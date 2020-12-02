@@ -3,6 +3,7 @@
 }
 
 .input {
+    height: calc(1.5em + .75rem + 12px);
     border-radius: 2px;
     border: 1px solid #DDDDDD;
 }
@@ -12,6 +13,7 @@
     border: 0;
     right: 0;
     position: absolute !important;
+    height: calc(1.5em + .75rem + 12px);
     transition: transform ease 0.5s;
 }
 
