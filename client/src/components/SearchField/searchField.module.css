@@ -1,0 +1,27 @@
+.img {
+    max-width: 16px;
+}
+
+.input {
+    border-radius: 2px;
+    border: 1px solid #DDDDDD;
+}
+
+.searchButton {
+    z-index: 100 !important;
+    border: 0;
+    right: 0;
+    position: absolute !important;
+    transition: transform ease 0.5s;
+}
+
+.searchButton:hover,
+.searchButton:active,
+.searchButton:focus {
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.searchButton:hover {
+    transform: scale(1.2);
+}
