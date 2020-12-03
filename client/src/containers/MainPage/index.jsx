@@ -1,12 +1,21 @@
-import React, { Component } from 'react';
-import Header from '../Header'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import Header from '../../components/Header';
+import CategoriesList from '../../components/CategoriesList';
 
 export class MainPage extends Component {
     render() {
         return (
-            <Header />
+            <Fragment>
+                <Header />
+                <CategoriesList categories={this.props.categories} />
+            </Fragment>
         )
     }
 }
 
-export default MainPage
+const mapStateToProps = state => ({
+    categories: state.settings.requestCategories
+});
+
+export default connect(mapStateToProps)(MainPage)
