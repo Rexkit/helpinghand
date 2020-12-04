@@ -9,8 +9,8 @@ import AccountIcon from '../../assets/icons/account-icon.png';
 
 export default function Header() {
     return (
-        <Container className={`${styles.header} styled-box`}>
-            <Row>
+        <Container className={styles.header}>
+            <Row className={`${styles.row} styled-box no-gutters`}>
                 <Col>
                     <h1>Helping Hand</h1>
                 </Col>

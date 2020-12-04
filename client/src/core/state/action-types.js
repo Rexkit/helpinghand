@@ -1,1 +1,3 @@
 export const ADD_CATEGORIES = "ADD_CATEGORIES";
+export const ADD_REQUESTS = "ADD_REQUESTS";
+export const ADD_USERS = "ADD_REQUESTS";

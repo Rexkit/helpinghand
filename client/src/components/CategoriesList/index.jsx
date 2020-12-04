@@ -14,9 +14,11 @@ export default function CategoriesList(props) {
                 </Col>
             </Row>
             <Row>
-                {props.categories.map((el) => (
-                    <CategoryItem name={el} />
-                ))}
+                <Col>
+                    {props.categories.map((el) => (
+                        <CategoryItem name={el} />
+                    ))}
+                </Col>
             </Row>
         </Container>
     )
