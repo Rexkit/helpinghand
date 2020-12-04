@@ -3,14 +3,52 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import CategoriesList from '../../components/CategoriesList';
 import RequestsList from '../../components/RequestsList';
+import Pagination from '../../components/Pagination';
 
 export class MainPage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedRequests: [],
+            offset: 0,
+            perPage: 4
+        };
+    }
+
+    selectRequests() {
+        const requestsToDisplay = this.props.requests.slice(this.state.offset, this.state.offset + this.state.perPage);
+        this.setState({
+            selectedRequests: requestsToDisplay
+        });
+    }
+
+    componentDidMount() {
+        this.selectRequests();
+    }
+
+    handlePageClick = (data) => {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * this.state.perPage);
+
+        this.setState({ offset: offset }, () => {
+            this.selectRequests();
+        });
+    };
+
     render() {
         return (
             <Fragment>
                 <Header />
                 <CategoriesList categories={this.props.categories} />
-                <RequestsList users={this.props.users} requests={this.props.requests} />
+                <RequestsList users={this.props.users} requests={this.state.selectedRequests} />
+                <Pagination 
+                    pageCount={Math.round(this.props.requests.length / this.state.perPage)}
+                    onPageChange={this.handlePageClick}
+                    offset={this.state.offset}
+                    limit={this.props.requests.length}
+                    perPage={this.state.selectedRequests.length}
+                />
             </Fragment>
         )
     }

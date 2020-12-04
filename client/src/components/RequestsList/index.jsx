@@ -14,9 +14,8 @@ export default function RequestsList(props) {
             </Row>
             {props.requests.map((el) => {
                 let userObject = props.users[el.userId];
-                
                 return (
-                    <Row>
+                    <Row key>
                         <Col>
                             <RequestItem requestName={el.requestName} requestText={el.requestText} userName={userObject.name} userLocation={userObject.location} />
                         </Col>

@@ -1,0 +1,30 @@
+.paginationContainer {
+    display: flex;
+    padding: 16px;
+    margin-bottom: 50px;
+    justify-content: space-between;
+}
+
+.paginationContainer span {
+    padding-right: 16px;
+}
+
+.paginationBlock {
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+}
+
+.paginationBlock li {
+    padding-right: 16px;
+    text-decoration: underline;
+}
+
+.paginationBlock li:focus {
+    outline: none !important;
+}
+
+.previous,
+.next {
+    display: none;
+}
