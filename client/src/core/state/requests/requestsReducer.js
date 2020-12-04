@@ -4,31 +4,37 @@ const initialState = {
     requests: [{
             requestName: "Help me to buy some groceries",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Grocery",
             userId: 1
         },
         {
             requestName: "Help me to buy some medicals",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Medicine",
             userId: 2
         },
         {
             requestName: "Help me to buy some medicals",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Medicine",
             userId: 2
         },
         {
             requestName: "Help me to buy some medicals",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Medicine",
             userId: 2
         },
         {
             requestName: "Help me to buy some medicals",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Medicine",
             userId: 2
         },
         {
             requestName: "Help me to buy some medicals",
             requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
+            requestType: "Medicine",
             userId: 2
         }
     ]

@@ -15,8 +15,8 @@ export default function CategoriesList(props) {
             </Row>
             <Row>
                 <Col>
-                    {props.categories.map((el) => (
-                        <CategoryItem name={el} />
+                    {props.categories.map(el => (
+                        <CategoryItem key={el} name={el} handleClick={(name) => props.handleClick(name)} />
                     ))}
                 </Col>
             </Row>

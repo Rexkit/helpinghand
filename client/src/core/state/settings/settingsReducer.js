@@ -2,6 +2,7 @@ import { ADD_CATEGORIES } from "../action-types";
 
 const initialState = {
     requestCategories: [
+        'All',
         'Grocery',
         'Medicine',
         'Other'

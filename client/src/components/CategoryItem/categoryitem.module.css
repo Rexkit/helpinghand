@@ -1,9 +1,14 @@
 .categoryItem {
-    width: 271px;
+    width: 253px;
     padding: 1rem;
     display: inline-flex;
     margin-right: 32px;
     cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.categoryItem:nth-child(4n) {
+    margin-right: 0;
 }
 
 .categoryItem:hover {
