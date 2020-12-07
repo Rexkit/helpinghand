@@ -1,51 +1,35 @@
-import { ADD_REQUESTS } from "../action-types";
+import { GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_FAILURE } from "../action-types";
 
 const initialState = {
-    requests: [{
-            requestName: "Help me to buy some groceries",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Grocery",
-            userId: 1
-        },
-        {
-            requestName: "Help me to buy some medicals",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Medicine",
-            userId: 2
-        },
-        {
-            requestName: "Help me to buy some medicals",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Medicine",
-            userId: 2
-        },
-        {
-            requestName: "Help me to buy some medicals",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Medicine",
-            userId: 2
-        },
-        {
-            requestName: "Help me to buy some medicals",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Medicine",
-            userId: 2
-        },
-        {
-            requestName: "Help me to buy some medicals",
-            requestText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu tempor, pulvinar diam id, volutpat est. Suspendisse mi nisl, sodales eget imperdiet in, congue eget mi.",
-            requestType: "Medicine",
-            userId: 2
-        }
-    ]
+    requests: {},
+    loading: false,
+    error: null
 };
 
 function requestsReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_REQUESTS:
-            return Object.assign({}, state, {
-                testData: state.requests.concat(action.payload)
-            });
+        case GET_ALL_REQUESTS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                requests: action.payload
+            };
+        case GET_ALL_REQUESTS_STARTED:
+            console.log(action.payload)
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+        case GET_ALL_REQUESTS_FAILURE:
+            console.log(action.payload)
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                requests: {}
+            };
         default:
             return state;
     };

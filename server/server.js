@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/dashboard", require("./routers/dashboardRouter"));
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get('/', function (req, res) {
-return res.send('This is the Express Server for Helping Hand');
+app.get('/', function(req, res) {
+    return res.send('This is the Express Server for Helping Hand');
 });
 
 app.get("*", (req, res) => {
-res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
 });
 
 const port = process.env.PORT || 8080;

@@ -4,13 +4,13 @@ import Header from '../../components/Header';
 import CategoriesList from '../../components/CategoriesList';
 import RequestsList from '../../components/RequestsList';
 import Pagination from '../../components/Pagination';
+import { getAllRequests } from '../../core/state/requests/requestsActions';
 
 export class MainPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedRequests: [],
             currentCategory: 'All',
             offset: 0,
             perPage: 4,
@@ -19,55 +19,58 @@ export class MainPage extends Component {
     }
 
     selectRequests() {
-        let requestsRaw = this.props.requests;
+        let requestsRaw = Object.keys(this.props.requests).reduce((array, key) => ([
+            ...array,
+            {
+                id: this.props.requests[key].id,
+                ...this.props.requests[key]
+            }
+        ]), []);
         if (this.state.currentCategory !== 'All') {
-            requestsRaw = requestsRaw.filter(el => el.requestType === this.state.currentCategory);
+            requestsRaw = requestsRaw.filter(el => el.type === this.state.currentCategory);
         }
-        requestsRaw = requestsRaw.filter(el => el.requestName.includes(this.state.searchQuery));
+        requestsRaw = requestsRaw.filter(el => el.name.includes(this.state.searchQuery));
         const requestsToDisplay = requestsRaw.slice(this.state.offset, this.state.offset + this.state.perPage);
-        this.setState({
-            selectedRequests: requestsToDisplay
-        });
+        
+        return requestsToDisplay;
     }
 
     componentDidMount() {
-        this.selectRequests();
+        this.props.onGetAllRequests();
     }
 
     handlePageClick = (data) => {
         let selected = data.selected;
         let offset = Math.ceil(selected * this.state.perPage);
 
-        this.setState({ offset: offset }, () => {
-            this.selectRequests();
-        });
+        this.setState({ offset: offset });
     };
 
     handleCategoryClick = (name) => {
-        this.setState({ currentCategory: name }, () => {
-            this.selectRequests();
-        });
+        this.setState({ currentCategory: name });
     };
 
     handleSearch = (searchQuery) => {
-        this.setState({ searchQuery: searchQuery }, () => {
-            this.selectRequests();
-        })
+        this.setState({ searchQuery: searchQuery })
     }
 
     render() {
+        const { loading } = this.props;
+        const selectedRequests = this.selectRequests();
+        const requestsLength = Object.keys(this.props.requests).length;
+
         return (
             <>
                 <Header handleSearch={this.handleSearch} />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
-                <RequestsList users={this.props.users} requests={this.state.selectedRequests} currentCategory={this.state.currentCategory} />
-                <Pagination 
-                    pageCount={Math.round(this.props.requests.length / this.state.perPage)}
+                {!loading ? <RequestsList users={this.props.users} requests={selectedRequests} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
+                {!loading ? <Pagination
+                    pageCount={Math.round(requestsLength / this.state.perPage)}
                     onPageChange={this.handlePageClick}
                     offset={this.state.offset}
-                    limit={this.props.requests.length}
-                    perPage={this.state.selectedRequests.length}
-                />
+                    limit={requestsLength}
+                    perPage={selectedRequests.length}
+                />: null}
             </>
         )
     }
@@ -76,7 +79,17 @@ export class MainPage extends Component {
 const mapStateToProps = state => ({
     categories: state.settings.requestCategories,
     requests: state.requests.requests,
-    users: state.users.users
+    users: state.users.users,
+    loading: state.requests.loading
 });
 
-export default connect(mapStateToProps)(MainPage)
+const mapDispatchToProps = dispatch => {
+    return {
+        onGetAllRequests: () => {
+            dispatch(getAllRequests());
+        }
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
