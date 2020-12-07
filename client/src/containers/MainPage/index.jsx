@@ -13,15 +13,17 @@ export class MainPage extends Component {
             selectedRequests: [],
             currentCategory: 'All',
             offset: 0,
-            perPage: 4
+            perPage: 4,
+            searchQuery: ''
         };
     }
 
     selectRequests() {
-        let requestsRaw = this.props.requests
+        let requestsRaw = this.props.requests;
         if (this.state.currentCategory !== 'All') {
             requestsRaw = requestsRaw.filter(el => el.requestType === this.state.currentCategory);
         }
+        requestsRaw = requestsRaw.filter(el => el.requestName.includes(this.state.searchQuery));
         const requestsToDisplay = requestsRaw.slice(this.state.offset, this.state.offset + this.state.perPage);
         this.setState({
             selectedRequests: requestsToDisplay
@@ -47,10 +49,16 @@ export class MainPage extends Component {
         });
     };
 
+    handleSearch = (searchQuery) => {
+        this.setState({ searchQuery: searchQuery }, () => {
+            this.selectRequests();
+        })
+    }
+
     render() {
         return (
             <>
-                <Header />
+                <Header handleSearch={this.handleSearch} />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
                 <RequestsList users={this.props.users} requests={this.state.selectedRequests} currentCategory={this.state.currentCategory} />
                 <Pagination 

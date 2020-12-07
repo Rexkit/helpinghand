@@ -7,7 +7,7 @@ import Button from '../Button';
 import styles from './header.module.css';
 import AccountIcon from '../../assets/icons/account-icon.png';
 
-export default function Header() {
+export default function Header(props) {
     return (
         <Container className={styles.header}>
             <Row className={`${styles.row} styled-box no-gutters`}>
@@ -15,7 +15,7 @@ export default function Header() {
                     <h1>Helping Hand</h1>
                 </Col>
                 <Col>
-                    <SearchField />
+                    <SearchField handleClick={query => props.handleSearch(query)} />
                 </Col>
                 <Col className={styles.account_block}>
                     <div className={styles.account_icon}>

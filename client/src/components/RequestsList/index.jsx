@@ -15,7 +15,7 @@ export default function RequestsList(props) {
             {props.requests.map((el) => {
                 let userObject = props.users[el.userId];
                 return (
-                    <Row key>
+                    <Row key={el.userId + Math.random()}>
                         <Col>
                             <RequestItem requestName={el.requestName} requestText={el.requestText} userName={userObject.name} userLocation={userObject.location} />
                         </Col>
