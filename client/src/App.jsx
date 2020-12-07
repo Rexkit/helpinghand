@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MainPage from './containers/MainPage'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './Routes';
 
-export class App extends Component {
-    render() {
-        return (
+function App() {
+    return (
+        <Router>
             <MainPage />
-        )
-    }
+            <Routes />
+        </Router>
+    )
 }
 
-export default App
+export default App;

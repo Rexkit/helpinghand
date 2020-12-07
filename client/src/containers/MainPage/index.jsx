@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import CategoriesList from '../../components/CategoriesList';
@@ -49,7 +49,7 @@ export class MainPage extends Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 <Header />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
                 <RequestsList users={this.props.users} requests={this.state.selectedRequests} currentCategory={this.state.currentCategory} />
@@ -60,7 +60,7 @@ export class MainPage extends Component {
                     limit={this.props.requests.length}
                     perPage={this.state.selectedRequests.length}
                 />
-            </Fragment>
+            </>
         )
     }
 }
