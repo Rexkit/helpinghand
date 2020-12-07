@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CategoryItem from '../CategoryItem';
 import styles from './categorieslist.module.css';
-import { NavLink } from 'react-router-dom';
 
 export default function CategoriesList(props) {
     return (
@@ -15,11 +14,12 @@ export default function CategoriesList(props) {
                 </Col>
             </Row>
             <Row>
-                {props.categories.map((el) => (
-                    <NavLink to={`/categories/${el}`}>
-                        <CategoryItem name={el} />
-                    </NavLink>
-                ))}
+                <Col>
+                    {props.categories.map(el => (
+                        <CategoryItem key={el} name={el} handleClick={(name) => props.handleClick(name)} />
+                    ))}
+                </Col>
+
             </Row>
         </Container>
     )
