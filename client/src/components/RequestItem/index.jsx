@@ -1,5 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
 import Button from '../Button';
 import styles from './requestitem.module.css';
 import PersonIcon from '../../assets/icons/person-icon.png';
