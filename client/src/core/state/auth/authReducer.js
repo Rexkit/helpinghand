@@ -1,4 +1,4 @@
-import { SET_AUTH } from "../action-types";
+import { SET_AUTH_TRUE, SET_AUTH_FALSE } from "../action-types";
 
 const initialState = {
     userId: null
@@ -6,10 +6,15 @@ const initialState = {
 
 function authReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_AUTH:
+        case SET_AUTH_TRUE:
             return {
                 ...state,
                 userId: 1
+            }
+        case SET_AUTH_FALSE:
+            return {
+                ...state,
+                userId: null
             }
         default:
             return state;

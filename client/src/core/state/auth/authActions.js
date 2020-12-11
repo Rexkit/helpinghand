@@ -1,5 +1,9 @@
-import { SET_AUTH } from '../action-types';
+import { SET_AUTH_FALSE, SET_AUTH_TRUE } from '../action-types';
 
-export const setAuth = () => ({
-    type: SET_AUTH
+export const setAuthTrue = () => ({
+    type: SET_AUTH_TRUE
+});
+
+export const setAuthFalse = () => ({
+    type: SET_AUTH_FALSE
 });

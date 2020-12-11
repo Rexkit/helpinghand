@@ -1,6 +1,7 @@
 export const ADD_CATEGORIES = "ADD_CATEGORIES";
 
-export const SET_AUTH = "SET_AUTH";
+export const SET_AUTH_TRUE = "SET_AUTH_TRUE";
+export const SET_AUTH_FALSE = "SET_AUTH_FALSE";
 
 export const ADD_USERS = "ADD_REQUESTS";
 

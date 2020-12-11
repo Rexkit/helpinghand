@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/Header';
 import CategoriesList from '../../components/CategoriesList';
 import RequestsList from '../../components/RequestsList';
 import Pagination from '../../components/Pagination';
 import { getAllRequests } from '../../core/state/requests/requestsActions';
-import { setAuth } from '../../core/state/auth/authActions';
+import HeaderWrapper from '../HeaderWrapper';
 
 export class MainPage extends Component {
     constructor(props) {
@@ -36,10 +35,6 @@ export class MainPage extends Component {
         return requestsToDisplay;
     }
 
-    login = () => {
-        this.props.onSetAuth();
-    }
-
     componentDidMount() {
         this.props.onGetAllRequests();
     }
@@ -66,7 +61,7 @@ export class MainPage extends Component {
 
         return (
             <>
-                <Header handleSearch={this.handleSearch} auth={this.login} />
+                <HeaderWrapper handleSearch={this.handleSearch} />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
                 {!loading ? <RequestsList users={this.props.users} requests={selectedRequests} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
                 {!loading ? <Pagination
@@ -85,7 +80,8 @@ const mapStateToProps = state => ({
     categories: state.settings.requestCategories,
     requests: state.requests.requests,
     users: state.users.users,
-    loading: state.requests.loading
+    loading: state.requests.loading,
+    isAuthenticated: state.auth.userId ? true : false
 });
 
 const mapDispatchToProps = dispatch => {

@@ -15,13 +15,16 @@ export default function Header(props) {
                     <h1>Helping Hand</h1>
                 </Col>
                 <Col>
-                    <SearchField handleClick={query => props.handleSearch(query)} />
+                    {props.handleSearch ? <SearchField handleClick={query => props.handleSearch(query)} /> : null}
                 </Col>
                 <Col className={styles.account_block}>
                     <div className={styles.account_icon}>
                         <img src={AccountIcon} alt="" />
                     </div>
-                    <Button onClick={() => props.auth()} buttonType="primary">Login</Button>
+                    {!props.isAuthenticated ? 
+                        <Button onClick={() => props.login()} buttonType="primary">Login</Button> :
+                        <Button onClick={() => props.logout()} buttonType="primary">Logout</Button>
+                    }
                 </Col>
             </Row>
         </Container>
