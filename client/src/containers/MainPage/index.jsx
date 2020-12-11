@@ -5,6 +5,7 @@ import CategoriesList from '../../components/CategoriesList';
 import RequestsList from '../../components/RequestsList';
 import Pagination from '../../components/Pagination';
 import { getAllRequests } from '../../core/state/requests/requestsActions';
+import { setAuth } from '../../core/state/auth/authActions';
 
 export class MainPage extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export class MainPage extends Component {
         let requestsRaw = Object.keys(this.props.requests).reduce((array, key) => ([
             ...array,
             {
-                id: this.props.requests[key].id,
+                id: key,
                 ...this.props.requests[key]
             }
         ]), []);
@@ -33,6 +34,10 @@ export class MainPage extends Component {
         const requestsToDisplay = requestsRaw.slice(this.state.offset, this.state.offset + this.state.perPage);
         
         return requestsToDisplay;
+    }
+
+    login = () => {
+        this.props.onSetAuth();
     }
 
     componentDidMount() {
@@ -61,7 +66,7 @@ export class MainPage extends Component {
 
         return (
             <>
-                <Header handleSearch={this.handleSearch} />
+                <Header handleSearch={this.handleSearch} auth={this.login} />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
                 {!loading ? <RequestsList users={this.props.users} requests={selectedRequests} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
                 {!loading ? <Pagination
@@ -87,6 +92,9 @@ const mapDispatchToProps = dispatch => {
     return {
         onGetAllRequests: () => {
             dispatch(getAllRequests());
+        },
+        onSetAuth: () => {
+            dispatch(setAuth());
         }
     };
 };

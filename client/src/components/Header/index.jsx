@@ -21,7 +21,7 @@ export default function Header(props) {
                     <div className={styles.account_icon}>
                         <img src={AccountIcon} alt="" />
                     </div>
-                    <Button buttonType="primary">Login</Button>
+                    <Button onClick={() => props.auth()} buttonType="primary">Login</Button>
                 </Col>
             </Row>
         </Container>

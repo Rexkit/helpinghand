@@ -16,7 +16,6 @@ function requestsReducer(state = initialState, action) {
                 requests: action.payload
             };
         case GET_ALL_REQUESTS_STARTED:
-            console.log(action.payload)
             return {
                 ...state,
                 loading: true,
