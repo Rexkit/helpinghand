@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HeaderWrapper from '../HeaderWrapper';
 import { withRouter } from "react-router";
 
 class RequestPage extends Component {
@@ -6,9 +7,9 @@ class RequestPage extends Component {
         const id= this.props.match.params.id;
 
         return (
-            <div>
-                <h1>RequestID: {id}</h1>
-            </div>
+            <>
+                <HeaderWrapper />
+            </>
         )
     }
 }
