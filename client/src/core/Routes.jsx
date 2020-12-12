@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MainPage from '../containers/MainPage';
 import ProtectedRoute from './ProtectedRoute';
 import RequestPage from '../containers/RequestPage';
+import ProfilePage from '../containers/ProfilePage';
 
 class Routes extends Component {
   render() {
@@ -11,6 +12,7 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={MainPage} />
         <ProtectedRoute path="/request" component={RequestPage} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/profile" component={ProfilePage} auth={this.props.isAuthenticated} />
       </Switch>
     );
   }

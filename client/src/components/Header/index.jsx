@@ -15,6 +15,10 @@ export default function Header(props) {
         history.push('/');
     }
 
+    const redirectToProfile = () => {
+        history.push('/profile');
+    }
+
     return (
         <Container className={styles.header}>
             <Row className={`${styles.row} styled-box no-gutters`}>
@@ -26,7 +30,7 @@ export default function Header(props) {
                 </Col>
                 <Col className={styles.account_block}>
                     {props.isAuthenticated ? <div className={styles.account_icon}>
-                        <img src={AccountIcon} alt="" />
+                        <img onClick={redirectToProfile} src={AccountIcon} alt="" />
                     </div> : null}
                     {!props.isAuthenticated ? 
                         <Button onClick={() => props.login()} buttonType="primary">Login</Button> :

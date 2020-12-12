@@ -22,7 +22,7 @@ export class MainPage extends Component {
         if (this.state.currentCategory !== 'All') {
             requestsRaw = requestsRaw.filter(el => el.type === this.state.currentCategory);
         }
-        requestsRaw = requestsRaw.filter(el => el.name.includes(this.state.searchQuery));
+        requestsRaw = requestsRaw.filter(el => el.name.includes(this.state.searchQuery) && !el.idworker);
         const requestsToDisplay = requestsRaw.slice(this.state.offset, this.state.offset + this.state.perPage);
         
         return requestsToDisplay;

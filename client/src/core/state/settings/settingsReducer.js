@@ -6,8 +6,7 @@ const initialState = {
         'Grocery',
         'Medicine',
         'Other'
-    ],
-    isAuthenticated: false
+    ]
 };
 
 function settingsReducer(state = initialState, action) {
