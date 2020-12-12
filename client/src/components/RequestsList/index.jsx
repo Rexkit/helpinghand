@@ -17,7 +17,7 @@ export default function RequestsList(props) {
                 return (
                     <Row key={el.userId + Math.random()}>
                         <Col>
-                            <RequestItem requestName={el.name} id={el.id} requestText={el.text} userName={userObject.name} userLocation={userObject.location} />
+                            <RequestItem requestName={el.name} id={el.id} uid={el.userId} requestText={el.text} userName={userObject.name} userLocation={userObject.location} />
                         </Col>
                     </Row>
                 )

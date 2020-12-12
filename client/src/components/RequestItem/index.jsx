@@ -7,8 +7,14 @@ import { useHistory } from 'react-router-dom';
 export default function RequestItem(props) {
     let history = useHistory();
 
-    const redirect = (id) => {
-        history.push(`/request/${id}`);
+    const redirect = (id, uid) => {
+        history.push({
+            pathname: `/request`,
+            state: {
+                id,
+                uid
+            }
+        });
     }
 
     return (
@@ -21,7 +27,7 @@ export default function RequestItem(props) {
                     <p className={`${styles.pItem} small`}>{props.userName}</p>
                     <p className="small-inter">{`- @${props.userLocation}`}</p>
                 </div>
-                <Button onClick={() => redirect(props.id)} buttonType="secondary">View Details</Button>
+                <Button onClick={() => redirect(props.id, props.uid)} buttonType="secondary">View Details</Button>
             </div>
         </div>
     )

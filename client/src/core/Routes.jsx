@@ -10,7 +10,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <ProtectedRoute path="/request/:id" component={RequestPage} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/request" component={RequestPage} auth={this.props.isAuthenticated} />
       </Switch>
     );
   }

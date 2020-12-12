@@ -4,11 +4,15 @@ const initialState = {
     users: {
         1: {
             name: 'Nikita Kuzin',
-            location: 'Berlin'
+            location: 'Berlin',
+            email: 'test@test.com',
+            phone: '+8888888888'
         },
         2: {
             name: 'Test Test',
-            location: 'TestCity'
+            location: 'TestCity',
+            email: 'test1@test.com',
+            phone: '+7777777777'
         }
     }
 };

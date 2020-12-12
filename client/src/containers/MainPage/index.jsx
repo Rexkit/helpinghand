@@ -80,17 +80,13 @@ const mapStateToProps = state => ({
     categories: state.settings.requestCategories,
     requests: state.requests.requests,
     users: state.users.users,
-    loading: state.requests.loading,
-    isAuthenticated: state.auth.userId ? true : false
+    loading: state.requests.loading
 });
 
 const mapDispatchToProps = dispatch => {
     return {
         onGetAllRequests: () => {
             dispatch(getAllRequests());
-        },
-        onSetAuth: () => {
-            dispatch(setAuth());
         }
     };
 };

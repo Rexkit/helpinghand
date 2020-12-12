@@ -1,4 +1,4 @@
-import { ADD_REQUESTS, GET_ALL_REQUESTS, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_FAILURE } from "../action-types";
+import { ADD_REQUESTS, SET_WORKER_ID, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_FAILURE } from "../action-types";
 
 import axios from 'axios';
 
@@ -18,7 +18,8 @@ export const getAllRequests = () => {
                         userId: cur.iduser,
                         name: cur.request_name,
                         text: cur.request_text,
-                        type: cur.request_cat
+                        type: cur.request_cat,
+                        idworker: cur.idworker
                     }
                 }), {})
                 dispatch(getAllRequestsSuccess(dataObj));
@@ -42,7 +43,12 @@ const getAllRequestsSuccess = data => ({
 
 const getAllRequestsFailure = error => ({
     type: GET_ALL_REQUESTS_FAILURE,
-    payloda: {
+    payload: {
         error
     }
 });
+
+export const setWorkerId = (id, uid) => ({
+    type: SET_WORKER_ID,
+    payload: { id, uid }
+})

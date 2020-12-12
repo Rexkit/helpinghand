@@ -1,4 +1,4 @@
-import { GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_FAILURE } from "../action-types";
+import { GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_FAILURE, SET_WORKER_ID } from "../action-types";
 
 const initialState = {
     requests: {},
@@ -22,13 +22,24 @@ function requestsReducer(state = initialState, action) {
                 error: null
             };
         case GET_ALL_REQUESTS_FAILURE:
-            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error,
                 requests: {}
             };
+        case SET_WORKER_ID:
+            const updatedRequest = {
+                ...state.requests[action.payload.id],
+                idworker: action.payload.uid
+            }
+            return {
+                ...state,
+                requests: {
+                    ...state.requests,
+                    [action.payload.id]: updatedRequest
+                }
+            }
         default:
             return state;
     };
