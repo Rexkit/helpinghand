@@ -3,8 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RequestItem from '../RequestItem';
+import { useSelector } from 'react-redux'
 
 export default function RequestsList(props) {
+    const isAuthenticated = useSelector(state => state.auth.userId ? true : false)
+
     return (
         <Container>
             <Row>
@@ -17,7 +20,7 @@ export default function RequestsList(props) {
                 return (
                     <Row key={el.userId + Math.random()}>
                         <Col>
-                            <RequestItem requestName={el.name} id={el.id} uid={el.userId} requestText={el.text} userName={userObject.name} userLocation={userObject.location} />
+                            <RequestItem requestName={el.name} auth={isAuthenticated} id={el.id} uid={el.userId} requestText={el.text} userName={userObject.name} userLocation={userObject.location} />
                         </Col>
                     </Row>
                 )

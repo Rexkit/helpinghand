@@ -15,6 +15,7 @@
 .account_block {
     display: flex;
     justify-content: flex-end;
+    min-height: 48px;
 }
 
 .account_block .account_icon {

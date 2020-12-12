@@ -25,9 +25,9 @@ export default function Header(props) {
                     {props.handleSearch ? <SearchField handleClick={query => props.handleSearch(query)} /> : null}
                 </Col>
                 <Col className={styles.account_block}>
-                    <div className={styles.account_icon}>
+                    {props.isAuthenticated ? <div className={styles.account_icon}>
                         <img src={AccountIcon} alt="" />
-                    </div>
+                    </div> : null}
                     {!props.isAuthenticated ? 
                         <Button onClick={() => props.login()} buttonType="primary">Login</Button> :
                         <Button onClick={() => props.logout()} buttonType="primary">Logout</Button>

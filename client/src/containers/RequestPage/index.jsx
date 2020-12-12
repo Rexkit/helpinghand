@@ -27,7 +27,7 @@ class RequestPage extends Component {
         return (
             <>
                 <HeaderWrapper />
-                <DetailedRequest acceptRequest={this.acceptRequest} user={userObj} request={requestObj} />
+                <DetailedRequest acceptRequest={this.acceptRequest} authId={this.props.authUid} user={userObj} request={requestObj} />
             </>
         )
     }

@@ -27,7 +27,7 @@ export default function RequestItem(props) {
                     <p className={`${styles.pItem} small`}>{props.userName}</p>
                     <p className="small-inter">{`- @${props.userLocation}`}</p>
                 </div>
-                <Button onClick={() => redirect(props.id, props.uid)} buttonType="secondary">View Details</Button>
+                {props.auth ? <Button onClick={() => redirect(props.id, props.uid)} buttonType="secondary">View Details</Button> : null}
             </div>
         </div>
     )

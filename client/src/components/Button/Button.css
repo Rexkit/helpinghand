@@ -10,6 +10,7 @@ button.primary {
     background-color: #227AFF;
     border: 1px solid #1170FF;
     color: #fff;
+    padding: 9px 27px;
 }
 
 button.primary:hover {

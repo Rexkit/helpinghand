@@ -18,14 +18,7 @@ export class MainPage extends Component {
         };
     }
 
-    selectRequests() {
-        let requestsRaw = Object.keys(this.props.requests).reduce((array, key) => ([
-            ...array,
-            {
-                id: key,
-                ...this.props.requests[key]
-            }
-        ]), []);
+    selectRequests(requestsRaw) {
         if (this.state.currentCategory !== 'All') {
             requestsRaw = requestsRaw.filter(el => el.type === this.state.currentCategory);
         }
@@ -34,6 +27,22 @@ export class MainPage extends Component {
         
         return requestsToDisplay;
     }
+
+    // attachItemsToCategories(requests) {
+    //     const categoriesObj = {};
+
+    //     for(let i = 0; i < requests.length; i++) {
+    //         if (requests[i].type in categoriesObj) {
+    //             categoriesObj[requests[i].type].count += 1;
+    //         } else {
+    //             categoriesObj[requests[i].type] = {
+    //                 count: 1
+    //             }
+    //         }
+    //     }
+
+    //     return categoriesObj;
+    // }
 
     componentDidMount() {
         this.props.onGetAllRequests();
@@ -56,7 +65,16 @@ export class MainPage extends Component {
 
     render() {
         const { loading } = this.props;
-        const selectedRequests = this.selectRequests();
+
+        let requestsRaw = Object.keys(this.props.requests).reduce((array, key) => ([
+            ...array,
+            {
+                id: key,
+                ...this.props.requests[key]
+            }
+        ]), []);
+
+        const selectedRequests = this.selectRequests(requestsRaw);
         const requestsLength = Object.keys(this.props.requests).length;
 
         return (

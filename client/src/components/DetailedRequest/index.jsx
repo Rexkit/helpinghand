@@ -25,7 +25,7 @@ export default function DetailedRequest(props) {
                                 {!props.request.idworker ? 
                                     <Button onClick={() => props.acceptRequest(props.request.id)} buttonType="primary">Accept</Button>:
                                     <Button buttonType="primary">Accepted!</Button>}
-                                <Button buttonType="secondary">Delete</Button>
+                                {props.request.userId === props.authId ? <Button buttonType="secondary">Delete</Button> : null}
                             </div>
                         </div>
                     </Col>
