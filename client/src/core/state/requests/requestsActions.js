@@ -1,4 +1,4 @@
-import { ADD_REQUESTS, SET_WORKER_ID, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_FAILURE } from "../action-types";
+import { ADD_REQUESTS, SET_WORKER_ID, SET_WORKER_ID_SUCCESS, SET_WORKER_ID_FAILURE, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_FAILURE } from "../action-types";
 
 import axios from 'axios';
 
@@ -48,7 +48,29 @@ const getAllRequestsFailure = error => ({
     }
 });
 
-export const setWorkerId = (id, uid) => ({
-    type: SET_WORKER_ID,
-    payload: { id, uid }
-})
+export const setWorkerId = (id, uid) => {
+    return dispatch => {
+        axios.post('http://localhost:8080/api/dashboard/setWorker', { id, wid: uid })
+            .then(res => {
+                dispatch(setWorkerIdSuccess(id, uid));
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+const setWorkerIdSuccess = (id, uid) => ({
+    type: SET_WORKER_ID_SUCCESS,
+    payload: {
+        id,
+        uid
+    }
+});
+
+const setWorkerIdFailure = error => ({
+    type: SET_WORKER_ID_FAILURE,
+    payload: {
+        error
+    }
+});

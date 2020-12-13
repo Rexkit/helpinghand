@@ -12,7 +12,7 @@ export default function RequestsList(props) {
         <Container>
             <Row>
                 <Col>
-                    <h2 className="mb-3">Requests</h2>
+                    <h2 className="mb-3">{props.title}</h2>
                 </Col>
             </Row>
             {props.requests.map((el) => {

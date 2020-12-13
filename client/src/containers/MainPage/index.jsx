@@ -23,9 +23,7 @@ export class MainPage extends Component {
             requestsRaw = requestsRaw.filter(el => el.type === this.state.currentCategory);
         }
         requestsRaw = requestsRaw.filter(el => el.name.includes(this.state.searchQuery) && !el.idworker);
-        const requestsToDisplay = requestsRaw.slice(this.state.offset, this.state.offset + this.state.perPage);
-        
-        return requestsToDisplay;
+        return requestsRaw;
     }
 
     // attachItemsToCategories(requests) {
@@ -75,19 +73,20 @@ export class MainPage extends Component {
         ]), []);
 
         const selectedRequests = this.selectRequests(requestsRaw);
-        const requestsLength = Object.keys(this.props.requests).length;
+        const requestsToDisplay = selectedRequests.slice(this.state.offset, this.state.offset + this.state.perPage);
+        const requestsLength = selectedRequests.length;
 
         return (
             <>
                 <HeaderWrapper handleSearch={this.handleSearch} />
                 <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
-                {!loading ? <RequestsList users={this.props.users} requests={selectedRequests} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
+                {!loading ? <RequestsList title="Requests" users={this.props.users} requests={requestsToDisplay} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
                 {!loading ? <Pagination
                     pageCount={Math.round(requestsLength / this.state.perPage)}
                     onPageChange={this.handlePageClick}
                     offset={this.state.offset}
                     limit={requestsLength}
-                    perPage={selectedRequests.length}
+                    perPage={requestsToDisplay.length}
                 />: null}
             </>
         )

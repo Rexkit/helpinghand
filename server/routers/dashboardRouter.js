@@ -12,6 +12,6 @@ const {
 
 router.get("/getAllRequests", getAllRequests);
 router.get("/getRequestWithID", getRequestWithID);
-router.put("/setWorker", setRequestWorkerByID);
+router.post("/setWorker", setRequestWorkerByID);
 
 module.exports = router;

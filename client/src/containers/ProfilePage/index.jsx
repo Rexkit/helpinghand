@@ -6,12 +6,14 @@ import RequestsList from '../../components/RequestsList';
 
 class ProfilePage extends Component {
     render() {
-        const filteredRequests = this.props.requests.filter(el => el.userId === this.props.authUid);
+        const ownRequests = this.props.requests.filter(el => el.userId === this.props.authUid);
+        const assignedRequests = this.props.requests.filter(el => el.idworker === this.props.authUid);
 
         return (
             <>
                 <HeaderWrapper />
-                <RequestsList users={this.props.users} requests={filteredRequests} />
+                <RequestsList title="Own Requests" users={this.props.users} requests={ownRequests} />
+                <RequestsList title="Assigned Requests" users={this.props.users} requests={assignedRequests} />
             </>
         )
     }

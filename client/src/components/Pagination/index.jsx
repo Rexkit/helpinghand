@@ -27,7 +27,7 @@ export default function Pagination(props) {
                                 activeClassName={'active'}
                             />
                         </div>
-                        <span>{`${props.offset+1} - ${props.offset + props.perPage} of ${props.limit} results`}</span>
+                        <span>{`${props.offset} - ${props.offset + props.perPage} of ${props.limit} results`}</span>
                     </div>
                 </Col>
             </Row>
