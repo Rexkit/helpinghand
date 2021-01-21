@@ -79,10 +79,10 @@ export class MainPage extends Component {
         return (
             <>
                 <HeaderWrapper handleSearch={this.handleSearch} />
-                <CategoriesList categories={this.props.categories} handleClick={this.handleCategoryClick} />
-                {!loading ? <RequestsList title="Requests" users={this.props.users} requests={requestsToDisplay} currentCategory={this.state.currentCategory} /> : <h1>loading</h1>}
+                <CategoriesList currCat={this.state.currentCategory} categories={this.props.categories} handleClick={this.handleCategoryClick} />
+                {!loading ? <RequestsList title="Requests" users={this.props.users} requests={requestsToDisplay} currentCategory={this.state.currentCategory} /> : null}
                 {!loading ? <Pagination
-                    pageCount={Math.round(requestsLength / this.state.perPage)}
+                    pageCount={Math.ceil(selectedRequests.length / this.state.perPage)}
                     onPageChange={this.handlePageClick}
                     offset={this.state.offset}
                     limit={requestsLength}

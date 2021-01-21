@@ -10,7 +10,7 @@ export default function CategoriesList(props) {
         <Container className={styles.categoriesList}>
             <Row>
                 <Col>
-                    <h2 className="mb-3">Categories</h2>
+                    <h2 className="mb-3">{`Categories - ${props.currCat}`}</h2>
                 </Col>
             </Row>
             <Row>
