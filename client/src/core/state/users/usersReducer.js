@@ -5,14 +5,20 @@ const initialState = {
         1: {
             name: 'Nikita Kuzin',
             location: 'Berlin',
-            email: 'test@test.com',
+            email: 'nikita@test.com',
             phone: '+8888888888'
         },
         2: {
-            name: 'Test Test',
-            location: 'TestCity',
-            email: 'test1@test.com',
+            name: 'Hesham Ahmed',
+            location: 'Alexandria',
+            email: 'hesham@test.com',
             phone: '+7777777777'
+        },
+        3: {
+            name: 'Ahmed Abdullah',
+            location: 'Fulda',
+            email: 'ahmed@test.com',
+            phone: '+6666666666'
         }
     }
 };
