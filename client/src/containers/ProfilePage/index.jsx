@@ -6,8 +6,15 @@ import RequestsList from '../../components/RequestsList';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
+import Button from '../../components/Button';
+import styles from './profile.module.css';
 
 class ProfilePage extends Component {
+
+    createRequest = e => {
+        this.props.history.push("/create");
+    };
+
     render() {
         let uid = this.props.authUid;
 
@@ -22,7 +29,10 @@ class ProfilePage extends Component {
                 <Container>
                     <Row>
                         <Col>
-                            <h5 className="mb-3">{`${userDetails.name}'s account`}</h5>
+                            <div className={styles.flexCenter}>
+                                <h5 className={`${styles.mrAuto} mb-3`}>{`${userDetails.name}'s account`}</h5>
+                                <Button className={styles.mlAuto} onClick={this.createRequest} buttonType="primary">Create Request</Button>
+                            </div>
                             <hr />
                         </Col>
                     </Row>
