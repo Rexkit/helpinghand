@@ -14,6 +14,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/api/create", require("./routers/requestRouter"));
 app.use("/api/dashboard", require("./routers/dashboardRouter"));
 app.use(express.static(path.join(__dirname, "../client/build")));
 

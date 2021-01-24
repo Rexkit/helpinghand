@@ -5,6 +5,7 @@ import MainPage from '../containers/MainPage';
 import ProtectedRoute from './ProtectedRoute';
 import RequestPage from '../containers/RequestPage';
 import ProfilePage from '../containers/ProfilePage';
+import CreateRequestPage from '../containers/CreateRequestPage';
 
 class Routes extends Component {
   render() {
@@ -13,6 +14,7 @@ class Routes extends Component {
         <Route exact path="/" component={MainPage} />
         <ProtectedRoute path="/request" component={RequestPage} auth={this.props.isAuthenticated} />
         <ProtectedRoute path="/profile" component={ProfilePage} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/create" component={CreateRequestPage} auth={this.props.isAuthenticated} />
       </Switch>
     );
   }
