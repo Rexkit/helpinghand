@@ -1,0 +1,7 @@
+.userItem {
+    padding: 16px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
