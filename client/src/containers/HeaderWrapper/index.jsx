@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { setAuthTrue, setAuthFalse } from '../../core/state/auth/authActions';
 
 class HeaderWrapper extends Component {
     login = () => {
-        this.props.onSetAuthTrue();
+        this.props.history.push("/login");
     }
 
     logout = () => {
@@ -26,7 +27,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         onSetAuthTrue: () => {
-            dispatch(setAuthTrue());
+            dispatch(setAuthTrue(1));
         },
         onSetAuthFalse: () => {
             dispatch(setAuthFalse());
@@ -34,4 +35,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderWrapper)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderWrapper));

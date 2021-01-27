@@ -9,7 +9,7 @@ function authReducer(state = initialState, action) {
         case SET_AUTH_TRUE:
             return {
                 ...state,
-                userId: 1
+                userId: action.payload
             }
         case SET_AUTH_FALSE:
             return {
