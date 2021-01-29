@@ -14,7 +14,6 @@ export default function CategoryItem(props) {
             </div>
             <div>
                 <p className="small">{props.name}</p>
-                <p className="small-inter">1560 items in category</p>
             </div>
         </div>
     )
