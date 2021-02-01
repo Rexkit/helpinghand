@@ -16,15 +16,19 @@ class CreateRequestPage extends Component {
         };
     }
 
-    createRequest = () => axios
-    .post("http://localhost:8080/api/create/createRequest", {
-        iduser: this.props.authUid,
-        request_name: this.state.title,
-        request_text: this.state.description,
-        request_cat: this.state.category,
-    }).then((response) => {
-      console.log(response);
-    });
+    createRequest = (e) => {
+        e.preventDefault();
+        axios
+            .post("http://localhost:8080/api/create/createRequest", {
+                iduser: this.props.authUid,
+                request_name: this.state.title,
+                request_text: this.state.description,
+                request_cat: this.state.category,
+            }).then((response) => {
+            console.log(response);
+            this.props.history.push('/');
+            });
+    };
 
     render() {
         return (
@@ -55,7 +59,7 @@ class CreateRequestPage extends Component {
                                         <Form.Label>Description</Form.Label>
                                         <Form.Control as="textarea" rows={3} onChange={e => this.setState({ description: e.target.value })}/>
                                     </Form.Group>
-                                    <Button variant="primary" type="submit" onClick={this.createRequest}>
+                                    <Button variant="primary" type="submit" onClick={(event) => this.createRequest(event)}>
                                         Submit
                                     </Button>
                                 </Form>

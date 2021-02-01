@@ -32,3 +32,14 @@
 .account_block .account_icon:hover {
     background-color: #cdd4dd;
 }
+
+@media (max-width: 500px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .account_block {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+}
