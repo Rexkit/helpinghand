@@ -18,7 +18,7 @@ class CreateRequestPage extends Component {
 
     createRequest = () => axios
     .post("http://localhost:8080/api/create/createRequest", {
-        iduser: 1,
+        iduser: this.props.authUid,
         request_name: this.state.title,
         request_text: this.state.description,
         request_cat: this.state.category,
@@ -69,7 +69,7 @@ class CreateRequestPage extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    authUid: state.auth.userId
 });
 
 export default withRouter(connect(mapStateToProps)(CreateRequestPage));
