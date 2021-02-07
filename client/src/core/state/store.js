@@ -1,10 +1,17 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import settingsReducer from './settings/settingsReducer';
+import authReducer from './auth/authReducer';
+import requestsReducer from './requests/requestsReducer';
+import usersReducer from './users/usersReducer';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    settings: settingsReducer
+    settings: settingsReducer,
+    requests: requestsReducer,
+    users: usersReducer,
+    auth: authReducer
 });
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 export default store;

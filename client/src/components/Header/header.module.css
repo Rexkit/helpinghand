@@ -1,16 +1,21 @@
 .header {
     margin-top: 25px;
     margin-bottom: 50px;
+}
+
+.row {
     padding: 16px 27px;
 }
 
 .header h1 {
     color: #227AFF;
+    cursor: pointer;
 }
 
 .account_block {
     display: flex;
     justify-content: flex-end;
+    min-height: 48px;
 }
 
 .account_block .account_icon {
@@ -26,4 +31,15 @@
 
 .account_block .account_icon:hover {
     background-color: #cdd4dd;
+}
+
+@media (max-width: 500px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .account_block {
+        margin-top: 1rem;
+        justify-content: center;
+    }
 }

@@ -10,8 +10,15 @@ button.primary {
     background-color: #227AFF;
     border: 1px solid #1170FF;
     color: #fff;
+    padding: 9px 27px;
 }
 
 button.primary:hover {
     background-color: #1c64cf;
+}
+
+button.secondary {
+    background-color: #EEF5FF;
+    color: #1170FF;
+    padding: 11px 27px;
 }

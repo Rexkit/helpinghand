@@ -1,0 +1,8 @@
+.contactBlock {
+    padding: 16px;
+}
+
+.contactRow {
+    padding: 16px 0;
+    display: flex;
+}

@@ -1,0 +1,31 @@
+.request {
+    padding: 16px;
+    margin-bottom: 25px;
+}
+
+.img {
+    width: 32px;
+    height: 32px;
+}
+
+.userBlock {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #DDDDDD;
+    display: flex;
+}
+
+.userBlock button {
+    margin-right: 16px;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+.pItem {
+    margin: 0 8px;
+}

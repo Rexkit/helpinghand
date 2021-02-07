@@ -1,0 +1,27 @@
+.requestItem {
+    padding: 16px;
+    margin-bottom: 25px;
+}
+
+.img {
+    width: 32px;
+    height: 32px;
+}
+
+.userBlock {
+    margin-top: 12px;
+    padding-top: 19px;
+    border-top: 1px solid #DDDDDD;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+.pItem {
+    margin: 0 8px;
+}

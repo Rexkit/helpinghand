@@ -10,13 +10,16 @@ export default function CategoriesList(props) {
         <Container className={styles.categoriesList}>
             <Row>
                 <Col>
-                    <h2 className="mb-3">Categories</h2>
+                    <h2 className="mb-3">{`Categories - ${props.currCat}`}</h2>
                 </Col>
             </Row>
             <Row>
-                {props.categories.map((el) => (
-                    <CategoryItem name={el} />
-                ))}
+                <Col>
+                    {props.categories.map(el => (
+                        <CategoryItem key={el} name={el} handleClick={(name) => props.handleClick(name)} />
+                    ))}
+                </Col>
+
             </Row>
         </Container>
     )

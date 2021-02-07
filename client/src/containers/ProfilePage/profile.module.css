@@ -1,0 +1,12 @@
+.flexCenter {
+    display: flex;
+    align-items: center;
+}
+
+.mrAuto {
+    margin-right: auto;
+}
+
+.mlAuto {
+    margin-right: auto;
+}

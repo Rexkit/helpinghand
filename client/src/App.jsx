@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import MainPage from './containers/MainPage'
+import React from 'react';
+import Routes from './core/Routes';
 
-export class App extends Component {
-    render() {
-        return (
-            <MainPage />
-        )
-    }
+function App() {
+    return (
+        <>
+            <Routes />
+        </>
+    )
 }
 
-export default App
+export default App;
