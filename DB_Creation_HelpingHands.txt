@@ -3,6 +3,7 @@ CREATE DATABASE `test_schema` /*!40100 DEFAULT CHARACTER SET latin1 */;
 CREATE TABLE `requests` (
   `idrequest` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
+  `resolved` varchar(255) DEFAULT NULL,
   `idworker` int(11) DEFAULT NULL,
   `request_name` varchar(255) DEFAULT NULL,
   `request_text` varchar(45) DEFAULT NULL,
