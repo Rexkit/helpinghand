@@ -4,6 +4,7 @@ import HeaderWrapper from '../HeaderWrapper';
 import DetailedRequest from '../../components/DetailedRequest';
 import { withRouter } from "react-router";
 import { setWorkerId, setRequestResolved } from '../../core/state/requests/requestsActions';
+import { deleteRequest } from '../../core/state/requests/requestsActions';
 
 class RequestPage extends Component {
     acceptRequest = id => {
@@ -12,6 +13,10 @@ class RequestPage extends Component {
 
     setResolved = id => {
         this.props.onSetRequestResolved(id, this.props.authUid);
+    }
+
+    deleteRequest = id => {
+        this.props.onDeleteRequest(id, this.props.authUid);
     }
 
 
@@ -33,7 +38,8 @@ class RequestPage extends Component {
             <>
                 <HeaderWrapper />
                 <DetailedRequest acceptRequest={this.acceptRequest} authId={this.props.authUid} user={userObj} request={requestObj} 
-                setResolved={this.setResolved} authId={this.props.authUid} user={userObj} request={requestObj}  />
+                setResolved={this.setResolved} 
+                deleteRequest={this.deleteRequest} />
             </>
         )
     }
@@ -50,7 +56,9 @@ const mapDispatchToProps = dispatch => {
         onSetWorkerId: (id, uid) => {
             dispatch(setWorkerId(id, uid))},
         onSetRequestResolved: (id) => {
-            dispatch(setRequestResolved(id))
+            dispatch(setRequestResolved(id))},
+        onDeleteRequest: (id) => {
+            dispatch(deleteRequest(id))
         }
     };
 };

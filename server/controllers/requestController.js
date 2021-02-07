@@ -31,9 +31,11 @@ exports.editRequest = (req, res) => {
 }
 
 exports.deleteRequest = (req, res) => {
-    const query = `DELETE FROM test_schema.requests WHERE idrequests = ${escape(req.params.idrequest)}`;
+    const reqID = req.body.id;
+    const query = `DELETE FROM test_schema.requests WHERE idrequest = ${reqID};`;
     connection.query(query, (err, result) => {
         if (err) res.json({ status: false, error: err.toString() })
-        res.json({ status: true, message: 'Request Deleted' });
+        else {res.json({ status: true, message: 'Request Deleted' });
+    }
     });
 }

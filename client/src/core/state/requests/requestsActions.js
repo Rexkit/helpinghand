@@ -1,6 +1,6 @@
-import { ADD_REQUESTS, SET_WORKER_ID, SET_REQUEST_RESOLVED_SUCCESS, SET_REQUEST_RESOLVED_FAILURE,
+import { ADD_REQUESTS, SET_WORKER_ID, SET_REQUEST_RESOLVED_SUCCESS, SET_REQUEST_RESOLVED_FAILURE, DELETE_REQUEST_SUCCESS, DELETE_REQUEST_FAILURE,
      SET_WORKER_ID_SUCCESS, SET_WORKER_ID_FAILURE, GET_ALL_REQUESTS_STARTED, GET_ALL_REQUESTS_SUCCESS, GET_ALL_REQUESTS_FAILURE } from "../action-types";
-
+     
 import axios from 'axios';
 
 export function addRequests(payload) {
@@ -74,6 +74,19 @@ export const setRequestResolved = (id) => {
     }
 }
 
+export const deleteRequest = (id) => {
+    return dispatch => {
+        axios.post('http://localhost:8080/api/create/deleteRequest', { id })
+            .then(res => {
+                dispatch(deleteRequestSuccess(id));
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+
 const setWorkerIdSuccess = (id, uid) => ({
     type: SET_WORKER_ID_SUCCESS,
     payload: {
@@ -98,6 +111,20 @@ const setRequestResolvedSuccess = (id) => ({
 
 const setRequestResolvedFailure = error => ({
     type: SET_REQUEST_RESOLVED_FAILURE,
+    payload: {
+        error
+    }
+});
+
+const deleteRequestSuccess = (id) => ({
+    type: DELETE_REQUEST_SUCCESS,
+    payload: {
+        id
+    }
+});
+
+const deleteRequestFailure = error => ({
+    type: DELETE_REQUEST_FAILURE,
     payload: {
         error
     }

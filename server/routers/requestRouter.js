@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
-    createRequest,
+    createRequest, deleteRequest,
 } = require("../controllers/requestController");
 
 //===========================================
@@ -9,5 +9,6 @@ const {
 //===========================================
 
 router.post("/createRequest", createRequest);
+router.post("/deleteRequest", deleteRequest);
 
 module.exports = router;
