@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import HeaderWrapper from '../HeaderWrapper';
 import DetailedRequest from '../../components/DetailedRequest';
 import { withRouter } from "react-router";
-import { setWorkerId } from '../../core/state/requests/requestsActions';
+import { setWorkerId, setRequestResolved } from '../../core/state/requests/requestsActions';
 
 class RequestPage extends Component {
     acceptRequest = id => {
         this.props.onSetWorkerId(id, this.props.authUid);
     }
+
+    setResolved = id => {
+        this.props.onSetRequestResolved(id, this.props.authUid);
+    }
+
 
     render() {
         const id = Number(this.props.location.state.id);
@@ -27,7 +32,8 @@ class RequestPage extends Component {
         return (
             <>
                 <HeaderWrapper />
-                <DetailedRequest acceptRequest={this.acceptRequest} authId={this.props.authUid} user={userObj} request={requestObj} />
+                <DetailedRequest acceptRequest={this.acceptRequest} authId={this.props.authUid} user={userObj} request={requestObj} 
+                setResolved={this.setResolved} authId={this.props.authUid} user={userObj} request={requestObj}  />
             </>
         )
     }
@@ -42,7 +48,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         onSetWorkerId: (id, uid) => {
-            dispatch(setWorkerId(id, uid));
+            dispatch(setWorkerId(id, uid))},
+        onSetRequestResolved: (id) => {
+            dispatch(setRequestResolved(id))
         }
     };
 };
