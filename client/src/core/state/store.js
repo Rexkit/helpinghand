@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import testReducer from './test/testReducer';
+import settingsReducer from './settings/settingsReducer';
 
 const rootReducer = combineReducers({
-    test: testReducer
+    settings: settingsReducer
 });
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

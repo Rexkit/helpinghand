@@ -1,0 +1,17 @@
+button {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    padding: 0 27px;
+    cursor: pointer;
+}
+
+button.primary {
+    background-color: #227AFF;
+    border: 1px solid #1170FF;
+    color: #fff;
+}
+
+button.primary:hover {
+    background-color: #1c64cf;
+}
