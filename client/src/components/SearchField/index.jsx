@@ -18,9 +18,7 @@ export default function SearchField(props) {
                     aria-describedby="basic-addon2"
                     onChange={e => setQuery(e.target.value)}
                 />
-                <InputGroup.Append>
-                    <Button className={styles.searchButton} onClick={() => props.handleClick(query)} variant="outline-secondary"><img className={styles.img} src={searchIcon} alt=""/></Button>
-                </InputGroup.Append>
+                <Button className={styles.searchButton} onClick={() => props.handleClick(query)} variant="outline-secondary"><img className={styles.img} src={searchIcon} alt=""/></Button>
             </InputGroup>
         </div>
     )
