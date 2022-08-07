@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import CategoriesList from '../../components/CategoriesList';
 import RequestsList from '../../components/RequestsList';
@@ -6,27 +6,28 @@ import Pagination from '../../components/Pagination';
 import { getAllRequests } from '../../core/state/requests/requestsActions';
 import HeaderWrapper from '../HeaderWrapper';
 
-export class MainPage extends Component {
-    constructor(props) {
-        super(props);
+const MainPage = ({ loading, requests, categories, users, onGetAllRequests }) => {
+    const [mainPageState, setMainPageState] = useState({
+        currentCategory: 'All',
+        offset: 0,
+        perPage: 4,
+        searchQuery: ''
+    });
 
-        this.state = {
-            currentCategory: 'All',
-            offset: 0,
-            perPage: 4,
-            searchQuery: ''
-        };
-    }
+    useEffect(() => {
+        onGetAllRequests();
+    }, [onGetAllRequests]);
 
-    selectRequests(requestsRaw) {
-        if (this.state.currentCategory !== 'All') {
-            requestsRaw = requestsRaw.filter(el => el.type === this.state.currentCategory);
+    const selectRequests = (requestsRaw) => {
+        if (mainPageState.currentCategory !== 'All') {
+            requestsRaw = requestsRaw.filter(el => el.type === mainPageState.currentCategory);
         }
-        requestsRaw = requestsRaw.filter(el => el.name.includes(this.state.searchQuery) && !el.idworker);
+
+        requestsRaw = requestsRaw.filter(el => el.name.includes(mainPageState.searchQuery) && !el.idworker);
         return requestsRaw;
     }
 
-    // attachItemsToCategories(requests) {
+    // const attachItemsToCategories = (requests) => {
     //     const categoriesObj = {};
 
     //     for(let i = 0; i < requests.length; i++) {
@@ -42,55 +43,62 @@ export class MainPage extends Component {
     //     return categoriesObj;
     // }
 
-    componentDidMount() {
-        this.props.onGetAllRequests();
-    }
-
-    handlePageClick = (data) => {
+    const handlePageClick = (data) => {
         let selected = data.selected;
-        let offset = Math.ceil(selected * this.state.perPage);
+        let offset = Math.ceil(selected * mainPageState.perPage);
 
-        this.setState({ offset: offset });
-    };
-
-    handleCategoryClick = (name) => {
-        this.setState({ currentCategory: name });
-    };
-
-    handleSearch = (searchQuery) => {
-        this.setState({ searchQuery: searchQuery })
-    }
-
-    render() {
-        const { loading } = this.props;
-
-        let requestsRaw = Object.keys(this.props.requests).reduce((array, key) => ([
-            ...array,
-            {
-                id: key,
-                ...this.props.requests[key]
+        setMainPageState((prevState) => {
+            return {
+                ...prevState,
+                offset
             }
-        ]), []);
+        });
+    };
 
-        const selectedRequests = this.selectRequests(requestsRaw);
-        const requestsToDisplay = selectedRequests.slice(this.state.offset, this.state.offset + this.state.perPage);
-        const requestsLength = selectedRequests.length;
+    const handleCategoryClick = (name) => {
+        setMainPageState((prevState) => {
+            return {
+                ...prevState,
+                currentCategory: name
+            }
+        });
+    };
 
-        return (
-            <>
-                <HeaderWrapper handleSearch={this.handleSearch} />
-                <CategoriesList currCat={this.state.currentCategory} categories={this.props.categories} handleClick={this.handleCategoryClick} />
-                {!loading ? <RequestsList title="Requests" users={this.props.users} requests={requestsToDisplay} currentCategory={this.state.currentCategory} /> : null}
-                {!loading ? <Pagination
-                    pageCount={Math.ceil(selectedRequests.length / this.state.perPage)}
-                    onPageChange={this.handlePageClick}
-                    offset={this.state.offset}
-                    limit={requestsLength}
-                    perPage={requestsToDisplay.length}
-                />: null}
-            </>
-        )
+    const handleSearch = (searchQuery) => {
+        setMainPageState((prevState) => {
+            return {
+                ...prevState,
+                searchQuery
+            }
+        });
     }
+
+    let requestsRaw = Object.keys(requests).reduce((array, key) => ([
+        ...array,
+        {
+            id: key,
+            ...requests[key]
+        }
+    ]), []);
+
+    const selectedRequests = selectRequests(requestsRaw);
+    const requestsToDisplay = selectedRequests.slice(mainPageState.offset, mainPageState.offset + mainPageState.perPage);
+    const requestsLength = selectedRequests.length;
+
+    return (
+        <>
+            <HeaderWrapper handleSearch={handleSearch} />
+            <CategoriesList currCat={mainPageState.currentCategory} categories={categories} handleClick={handleCategoryClick} />
+            {!loading ? <RequestsList title="Requests" users={users} requests={requestsToDisplay} currentCategory={mainPageState.currentCategory} /> : null}
+            {!loading ? <Pagination
+                pageCount={Math.ceil(selectedRequests.length / mainPageState.perPage)}
+                onPageChange={handlePageClick}
+                offset={mainPageState.offset}
+                limit={requestsLength}
+                perPage={requestsToDisplay.length}
+            />: null}
+        </>
+    );
 }
 
 const mapStateToProps = state => ({
