@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import HeaderWrapper from '../HeaderWrapper';
 import UsersList from '../../components/UsersList';
 import { withRouter } from "react-router";
 import { setAuthTrue } from '../../core/state/auth/authActions';
 
-class LoginPage extends Component {
-    selectAuthUser = id => {
-        this.props.onSetAuthTrue(id);
-        this.props.history.push('/');
+const LoginPage = ({ users, history, onSetAuthTrue }) => {
+    const selectAuthUser = id => {
+        onSetAuthTrue(id);
+        history.push('/');
     }
 
-    render() {
-        return (
-            <>
-                <HeaderWrapper />
-                <UsersList users={this.props.users} onAuth={(id) => this.selectAuthUser(id)} />
-            </>
-        )
-    }
+    return (
+        <>
+            <HeaderWrapper />
+            <UsersList users={users} onAuth={(id) => selectAuthUser(id)} />
+        </>
+    )
 }
 
 const mapStateToProps = state => ({

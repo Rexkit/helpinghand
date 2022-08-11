@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import HeaderWrapper from '../HeaderWrapper';
 import DetailedRequest from '../../components/DetailedRequest';
@@ -6,43 +6,45 @@ import { withRouter } from "react-router";
 import { setWorkerId, setRequestResolved } from '../../core/state/requests/requestsActions';
 import { deleteRequest } from '../../core/state/requests/requestsActions';
 
-class RequestPage extends Component {
-    acceptRequest = id => {
-        this.props.onSetWorkerId(id, this.props.authUid);
+const RequestPage = ({ users, requests, authUid, location, onSetWorkerId, onSetRequestResolved, onDeleteRequest }) => {
+    const acceptRequest = id => {
+        onSetWorkerId(id, authUid);
     }
 
-    setResolved = id => {
-        this.props.onSetRequestResolved(id, this.props.authUid);
+    const setResolved = id => {
+        onSetRequestResolved(id, authUid);
     }
 
-    deleteRequest = id => {
-        this.props.onDeleteRequest(id, this.props.authUid);
+    const deleteRequest = id => {
+        onDeleteRequest(id, authUid);
     }
 
+    const id = Number(location.state.id);
+    const uid = Number(location.state.uid);
+    
+    const userObj = {
+        id: uid,
+        ...users[uid]
+    };
 
-    render() {
-        const id = Number(this.props.location.state.id);
-        const uid = Number(this.props.location.state.uid);
-        
-        const userObj = {
-            id: uid,
-            ...this.props.users[uid]
-        };
+    const requestObj = {
+        id: id,
+        ...requests[id]
+    };
 
-        const requestObj = {
-            id: id,
-            ...this.props.requests[id]
-        };
-
-        return (
-            <>
-                <HeaderWrapper />
-                <DetailedRequest acceptRequest={this.acceptRequest} authId={this.props.authUid} user={userObj} request={requestObj} 
-                setResolved={this.setResolved} 
-                deleteRequest={this.deleteRequest} />
-            </>
-        )
-    }
+    return (
+        <>
+            <HeaderWrapper />
+            <DetailedRequest
+                acceptRequest={acceptRequest}
+                authId={authUid}
+                user={userObj}
+                request={requestObj} 
+                setResolved={setResolved} 
+                deleteRequest={deleteRequest}
+            />
+        </>
+    )
 }
 
 const mapStateToProps = state => ({
